@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Beckers 3D Animados - Longos</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            gap: 80px;
+        }
+
+        /* Estrutura principal do Becker - Aumentado para 300px */
+        .beaker {
+            position: relative;
+            width: 120px;
+            height: 300px; 
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top: none;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Boca do Becker (Efeito 3D Superior) */
+        .beaker::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -2px;
+            width: 120px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            z-index: 2;
+        }
+
+        .liquid-container {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-bottom-left-radius: 13px;
+            border-bottom-right-radius: 13px;
+        }
+
+        .liquid {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .blue {
+            background: linear-gradient(90deg, #0055ff 0%, #00aaff 50%, #0055ff 100%);
+            animation: moveUp 5s ease-in-out infinite; /* Um pouco mais lento pela distância */
+        }
+
+        .yellow {
+            background: linear-gradient(90deg, #ccaa00 0%, #ffcc00 50%, #ccaa00 100%);
+            animation: moveDown 5s ease-in-out infinite;
+        }
+
+        .liquid::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: inherit;
+            filter: brightness(1.2);
+            border-radius: 50%;
+        }
+
+        /* Animações ajustadas para o novo comprimento */
+        @keyframes moveUp {
+            0%, 100% { transform: translateY(90%); }
+            50% { transform: translateY(10%); }
+        }
+
+        @keyframes moveDown {
+            0%, 100% { transform: translateY(10%); }
+            50% { transform: translateY(90%); }
+        }
+
+        .glass-reflection {
+            position: absolute;
+            top: 10%;
+            left: 15%;
+            width: 8px;
+            height: 80%; /* Reflexo também acompanhando o crescimento */
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            z-index: 3;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="beaker">
+        <div class="glass-reflection"></div>
+        <div class="liquid-container">
+            <div class="liquid blue"></div>
+        </div>
+    </div>
+
+    <div class="beaker">
+        <div class="glass-reflection"></div>
+        <div class="liquid-container">
+            <div class="liquid yellow"></div>
+        </div>
+    </div>
+
+</body>
+</html>
